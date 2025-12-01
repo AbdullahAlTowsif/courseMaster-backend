@@ -5,7 +5,6 @@ export interface IBatch {
     name: string;
     startDate: Date;
     endDate: Date;
-    maxStudents: number;
     currentStudents: number;
     enrolledCourses: Types.ObjectId[];
 }

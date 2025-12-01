@@ -9,7 +9,8 @@ const courseSchema = new Schema<ICourse>(
     price: { type: Number, default: 0 },
     category: { type: String, index: true },
     tags: [{ type: String, index: true }],
-    instructor: { type: Types.ObjectId, ref: "User", required: true }, // Maintains: course belongs to admin/instructor
+    instructor: { type: Types.ObjectId, ref: "User", required: true }, // Maintains: course instructor
+    host: { type: Types.ObjectId, ref: "User", required: true }, // Maintains: course belongs to admin/instructor
     thumbnail: { type: String },
     syllabus: [{ type: String }],
     // Strong relationship links:

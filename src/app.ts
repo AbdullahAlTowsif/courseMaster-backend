@@ -11,6 +11,15 @@ import notFound from "./app/middlewares/notFound";
 
 const app = express();
 
+app.use(
+    cors({
+        origin: envVars.FRONTEND_URL,
+        credentials: true,
+        methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+        allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
+    })
+);
+
 app.use(expressSession({
     secret: envVars.EXPRESS_SESSION_SECRET,
     resave: false,
@@ -22,10 +31,6 @@ app.use(cookieParser());
 app.use(express.json());
 app.set("trust proxy", 1);
 app.use(express.urlencoded({ extended: true }))
-app.use(cors({
-    origin: envVars.FRONTEND_URL,
-    credentials: true
-}));
 
 app.use("/api", router);
 
