@@ -4,6 +4,10 @@ import cookieParser from "cookie-parser";
 import passport from "passport";
 import expressSession from "express-session";
 import { envVars } from "./app/config/env";
+import "./app/config/passport";
+import { router } from "./app/routes";
+import { globalErrorHandler } from "./app/middlewares/globalErrorhandlers";
+import notFound from "./app/middlewares/notFound";
 
 const app = express();
 
@@ -23,11 +27,19 @@ app.use(cors({
     credentials: true
 }));
 
+app.use("/api", router);
+
 app.get("/", (req: Request, res: Response) => {
     res.status(200).json({
         message: "Course Master Server is running!"
     })
 })
+
+// global error handler
+app.use(globalErrorHandler);
+
+// not found
+app.use(notFound);
 
 
 export default app;

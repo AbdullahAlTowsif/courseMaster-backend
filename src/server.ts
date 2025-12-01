@@ -3,6 +3,7 @@ import { Server } from "http";
 import mongoose from "mongoose";
 import app from "./app";
 import { envVars } from "./app/config/env";
+import { seedAdmin } from "./app/utils/seedAdmin";
 
 let server: Server;
 
@@ -20,8 +21,10 @@ const startServer = async () => {
   }
 };
 
-void (async () => {
+// eslint-disable-next-line @typescript-eslint/no-floating-promises
+(async () => {
   await startServer();
+  await seedAdmin();
 })();
 
 process.on("unhandledRejection", (error) => {

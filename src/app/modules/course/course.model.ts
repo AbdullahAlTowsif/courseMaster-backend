@@ -18,7 +18,7 @@ const courseSchema = new Schema<ICourse>(
     studentsCount: { type: Number, default: 0 },
     published: { type: Boolean, default: false }
   },
-  { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } }
+  { timestamps: true}
 );
 
 
